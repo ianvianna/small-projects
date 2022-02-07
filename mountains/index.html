@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--   M E T A S   -->
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Enter the Mountains!">
+        <meta property="og:title" content="Mountains"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:description" content="Enter the Mountains!"/>
+        <meta property="og:site_name" content="Montains - Enter a new world!"/>
+
+        <!--   L I N K S   -->
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+
+        <!--   T I T L E   -->
+        <title>Mountains - Enter a new world!</title>
+    </head>
+    <body>
+
+        <!--   H T M L   -->
+        <main class="main">
+            <section class="container" data-container>
+
+                <!-- S I G N   I N -->
+                <div class="container-content-top sign-in active" data-sign="in">
+                    <h2>Sign in to Mountains</h2>
+                    <form class="login-form">
+                        <label for="username-sign-in">
+                            Username or email address
+                        </label>
+                        <input type="text" id="username-sign-in" />
+                        <label for="password">Password</label>
+                        <input type="password" id="password"/>
+                        <button type="submit">Sign in</button>
+                    </form>
+                </div>
+                <span class="container-content-bottom sign-in active" data-sign="in">
+                    Don't have an account? <a href="#" data-button>Sign Up</a>
+                </span>
+
+                <!-- S I G N   U P -->
+                <div class="container-content-top sign-up" data-sign="up">
+                    <h2>Sign up to Mountains</h2>
+                    <form class="register-form">
+                        <label for="username-sign-up">Username</label>
+                        <input type="text" id="username-sign-up" />
+                        <label for="email">Email address</label>
+                        <input type="text" id="email"/>
+                        <label for="password-sign-up">Password</label>
+                        <input type="password" id="password-sign-up"/>
+                        <button type="submit">Sign up</button>
+                    </form>
+                </div>
+                <span class="container-content-bottom sign-up" data-sign="up">
+                    Already have an account? <a href="#" data-button>Sign In</a>
+                </span>
+            </section>
+        </main>
+
+        <!--   S C R I P T   -->
+        <script src="scripts/script.js" type="module"></script>
+
+    </body>
+</html>

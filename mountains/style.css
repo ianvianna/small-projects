@@ -1,0 +1,158 @@
+/*   F O N T S   */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/*   G E N E R A L   */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #0f0f0f;
+}
+
+/*   M A I N   */
+.main {
+    background: linear-gradient(35deg, #9e23fd, #332ffa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100vw;
+    min-height: 100vh;
+}
+.container {
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    min-height: 50vh;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00000070;
+}
+
+/*   T O P   */
+.container-content-top h2 {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+.login-form input,
+.register-form input {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #00000020;
+    outline: none;
+}
+.login-form input:focus,
+.register-form input:focus {
+    box-shadow: 0 0 5px #00000070;
+    transition: box-shadow 0.3s;
+}
+.login-form button,
+.register-form button {
+    background: #9e23fd;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login-form button:hover,
+.register-form button:hover {
+    background: #9e4dfd;
+    transition: background 0.3s;
+}
+
+/*   B O T T O M   */
+.container-content-bottom {
+    text-align: center;
+}
+.container-content-bottom a {
+    color: #332ffa;
+}
+.container-content-bottom a:hover {
+    color: #2392fd;
+    transition: color 0.3s;
+}
+
+/*   R E S P O N S I V E   */
+@media (max-width: 350px) {
+    * {
+        font-size: 14px;
+    }
+    .container-content-top h2 {
+        font-size: 1.35em;
+    }
+}
+@media (max-width: 290px) {
+    .container-content-bottom,
+    .container-content-bottom a {
+        font-size: 12px;
+    }
+}
+
+/*   J A V A S C R I P T   */
+.container-content-top.sign-in,
+.container-content-bottom.sign-in,
+.container-content-top.sign-up,
+.container-content-bottom.sign-up {
+    opacity: 0;
+    display: none;
+}
+.container-content-top.sign-in.active,
+.container-content-bottom.sign-in.active,
+.container-content-top.sign-up.active,
+.container-content-bottom.sign-up.active {
+    opacity: 1;
+    display: initial;
+    animation: fade 0.75s linear;
+}
+.container.clicked {
+    animation: rotate 0.5s linear;
+}
+.container.active.clicked {
+    animation: rotateBack 0.5s linear;
+}
+
+/*   A N I M A T I O N   */
+@keyframes rotate {
+    0%,
+    100% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+}
+@keyframes rotateBack {
+    0%,
+    100% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+}
+@keyframes fade {
+    0%,
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

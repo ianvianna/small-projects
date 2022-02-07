@@ -1,0 +1,11 @@
+{
+    "name": "mountains",
+    "version": "2.0.0",
+    "description": "Formulário simples para treinar CSS Animation e JavaScript...",
+    "main": "script.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Ian M. Vianna",
+    "license": "ISC"
+}
