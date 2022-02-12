@@ -1,0 +1,32 @@
+/*   R E S E T   */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/*   S T Y L I N G   */
+.wrapper {
+    overflow: hidden;
+    margin-top: 40px;
+}
+.slide {
+    display: flex;
+}
+.slide img {
+    display: block;
+    width: 100%;
+    box-shadow: 0 0px 5px #00000045;
+}
+.slide span {
+    flex-shrink: 0;
+    margin: 0 20px;
+    padding: 5px;
+    width: 50vw;
+    max-width: 300px;
+}
