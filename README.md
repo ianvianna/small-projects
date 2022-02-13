@@ -1,5 +1,5 @@
 ## *SMALL PROJECTS*
-***DESCRIÇÃO DO REPOSITÓRIO.***  
+***DESCRIÇÃO DO REPOSITÓRIO:***  
 *Este repositório serve para guardar códigos de projetos pequenos que eu desenvolvi para treinar habilidades específicas.*  
   
 ***TECNOLOGIAS UTILIZADAS:***  
