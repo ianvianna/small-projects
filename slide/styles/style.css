@@ -5,7 +5,7 @@
     padding: 0;
 }
 body {
-    background: #151515;
+    background: linear-gradient(35deg, #9e23fd, #332ffa);
     display: flex;
     align-items: center;
     min-height: 100vh;
@@ -21,10 +21,11 @@ body {
 }
 .slide span {
     flex-shrink: 0;
-    margin: 0 20px;
+    margin: 0 10px;
     padding: 5px;
     width: 50vw;
     max-width: 700px;
+    min-width: 200px;
 }
 .slide img {
     display: block;

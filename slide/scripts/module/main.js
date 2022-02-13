@@ -60,9 +60,37 @@ export default class SlideMain {
         this.updatePosition = this.updatePosition.bind(this);
     }
 
+    // Configurações...
+    slidePosition(slide) {
+        const margin = (this.wrapper.offsetWidth - slide.offsetWidth) / 2;
+        return -(slide.offsetLeft - margin);
+    }
+    slideIndexNav(index) {
+        const last = this.slideArray.length - 1;
+        this.index = {
+            prev: index ? index - 1 : null,
+            active: index,
+            next: index === last ? null : index + 1,
+        }
+    }
+    changeSlide(index) {
+        const activeSlide = this.slideArray[index];
+        this.moveSlide(this.slideArray[index].position);
+        this.slideIndexNav(index);
+        this.distance.finalPosition = activeSlide.position;
+    }
+    slideConfig() {
+        this.slideArray = [...this.slide.children].map((element) => {
+            const position = this.slidePosition(element);
+            return { position, element };
+        });
+        console.log(this.slideArray);
+    }
+
     // Inicializa a classe...
     init() {
         this.bindEvents();
         this.addEvents();
+        this.slideConfig();
     }
 }
