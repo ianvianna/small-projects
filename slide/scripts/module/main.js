@@ -3,6 +3,7 @@ export default class SlideMain {
         this.wrapper = document.querySelector(wrapper);
         this.slide = document.querySelector(slide);
         this.distance = { finalPosition: 0, startX: 0, movement: 0, };
+        this.activeClass = 'active';
     }
 
     // Atualiza o posicionamento através do cálculo...
@@ -26,6 +27,7 @@ export default class SlideMain {
             this.distance.startX = e.changedTouches[0].clientX;
             this.wrapper.addEventListener("touchmove", this.onMove);
         }
+        this.transition(false);
     }
     onMove(e) {
         e.preventDefault();
@@ -42,22 +44,17 @@ export default class SlideMain {
         this.wrapper.removeEventListener("mousemove", this.onMove);
         this.wrapper.removeEventListener("touchmove", this.onMove);
         this.distance.finalPosition = this.distance.movePosition;
+        this.transition(true);
+        this.changeSlideOnEnd();
     }
-
-    // Adiciona eventos...
-    addEvents() {
-        this.wrapper.addEventListener("mousedown", this.onStart);
-        this.wrapper.addEventListener("touchstart", this.onStart);
-        this.wrapper.addEventListener("mouseup", this.onEnd);
-        this.wrapper.addEventListener("touchend", this.onEnd);
-    }
-
-    // Mantém a referência correta dos eventos...
-    bindEvents() {
-        this.onStart = this.onStart.bind(this);
-        this.onMove = this.onMove.bind(this);
-        this.onEnd = this.onEnd.bind(this);
-        this.updatePosition = this.updatePosition.bind(this);
+    changeSlideOnEnd() {
+        if (this.distance.movement > 100 && this.index.next !== null) {
+            this.activeNextSlide();
+        } else if (this.distance.movement < -100 && this.index.prev !== null) {
+            this.activePrevSlide();
+        } else {
+            this.changeSlide(this.index.active);
+        }
     }
 
     // Configurações...
@@ -78,6 +75,7 @@ export default class SlideMain {
         this.moveSlide(this.slideArray[index].position);
         this.slideIndexNav(index);
         this.distance.finalPosition = activeSlide.position;
+        this.changeActiveClass();
     }
     slideConfig() {
         this.slideArray = [...this.slide.children].map((element) => {
@@ -86,11 +84,59 @@ export default class SlideMain {
         });
         console.log(this.slideArray);
     }
+    transition(active) {
+        this.slide.style.transition = active ? 'transform .3s' : '';
+    }
+    changeActiveClass() {
+        this.slideArray.forEach((item) => item.element.classList.remove(this.activeClass));
+        this.slideArray[this.index.active].element.classList.add(this.activeClass);
+    }
+    activePrevSlide() {
+        if (this.index.prev !== null) {
+            this.changeSlide(this.index.prev);
+        }
+    }
+    activeNextSlide() {
+        if (this.index.next !== null) {
+            this.changeSlide(this.index.next);
+        }
+    }
+
+    // Redimensionamento de tela...
+    onResize() {
+        setTimeout(() => {
+            this.slideConfig();
+            this.changeSlide(this.index.active);
+        }, 1000)
+    }
+    addResizeEvent() {
+        window.addEventListener("resize", this.onResize);
+    }
+
+    // Adiciona eventos...
+    addEvents() {
+        this.wrapper.addEventListener("mousedown", this.onStart);
+        this.wrapper.addEventListener("touchstart", this.onStart);
+        this.wrapper.addEventListener("mouseup", this.onEnd);
+        this.wrapper.addEventListener("touchend", this.onEnd);
+    }
+
+    // Mantém a referência correta dos eventos...
+    bindEvents() {
+        this.onStart = this.onStart.bind(this);
+        this.onMove = this.onMove.bind(this);
+        this.onEnd = this.onEnd.bind(this);
+        this.updatePosition = this.updatePosition.bind(this);
+        this.onResize = this.onResize.bind(this);
+    }
 
     // Inicializa a classe...
     init() {
+        this.transition(true);
         this.bindEvents();
         this.addEvents();
         this.slideConfig();
+        this.changeSlide(0);
+        this.addResizeEvent();
     }
 }
