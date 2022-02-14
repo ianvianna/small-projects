@@ -20,7 +20,6 @@ export default class SlideMain {
     onStart(e) {
         e.preventDefault();
         if (e.type === "mousedown") {
-            console.log('Click!');
             this.distance.startX = e.clientX;
             this.wrapper.addEventListener("mousemove", this.onMove);
         } else if (e.type === "touchstart") {
@@ -31,7 +30,6 @@ export default class SlideMain {
     }
     onMove(e) {
         e.preventDefault();
-        console.log(e.type)
         if (e.type === "mousemove") {
             const finalPosition = this.updatePosition(e.clientX);
             this.moveSlide(finalPosition);
@@ -82,7 +80,6 @@ export default class SlideMain {
             const position = this.slidePosition(element);
             return { position, element };
         });
-        console.log(this.slideArray);
     }
     transition(active) {
         this.slide.style.transition = active ? 'transform .3s' : '';
@@ -112,6 +109,10 @@ export default class SlideMain {
     addResizeEvent() {
         window.addEventListener("resize", this.onResize);
     }
+    keyChecker(e) {
+        if (e.key === "ArrowRight") this.activeNextSlide();
+        else if (e.key === "ArrowLeft") this.activePrevSlide();
+    }
 
     // Adiciona eventos...
     addEvents() {
@@ -119,6 +120,8 @@ export default class SlideMain {
         this.wrapper.addEventListener("touchstart", this.onStart);
         this.wrapper.addEventListener("mouseup", this.onEnd);
         this.wrapper.addEventListener("touchend", this.onEnd);
+        window.addEventListener("keydown", this.keyChecker);
+        return this;
     }
 
     // Mantém a referência correta dos eventos...
@@ -128,6 +131,8 @@ export default class SlideMain {
         this.onEnd = this.onEnd.bind(this);
         this.updatePosition = this.updatePosition.bind(this);
         this.onResize = this.onResize.bind(this);
+        this.keyChecker = this.keyChecker.bind(this);
+        return this;
     }
 
     // Inicializa a classe...
@@ -138,5 +143,6 @@ export default class SlideMain {
         this.slideConfig();
         this.changeSlide(0);
         this.addResizeEvent();
+        return this;
     }
 }
